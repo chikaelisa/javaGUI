@@ -2,6 +2,7 @@ package components;
 
 import components.menu.MainMenuBar;
 import components.panel.AnimationPanel;
+import components.panel.StatusPanel;
 import components.panel.TextPanel;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.*;
 public class MainFrame extends JFrame {
     private final TextPanel textPanel;
     private final AnimationPanel animationPanel;
+    private final StatusPanel statusPanel;
 
     public MainFrame() {
         setTitle("Java GUI application");
@@ -21,9 +23,11 @@ public class MainFrame extends JFrame {
         setJMenuBar(new MainMenuBar(this));
         textPanel = new TextPanel(this);
         animationPanel = new AnimationPanel();
+        statusPanel = new StatusPanel();
 
         add(textPanel, BorderLayout.WEST);
         add(animationPanel, BorderLayout.CENTER);
+        add(statusPanel, BorderLayout.SOUTH);
 
         animationPanel.startAnimation();
     }
@@ -34,5 +38,9 @@ public class MainFrame extends JFrame {
 
     public AnimationPanel getAnimationPanel() {
         return animationPanel;
+    }
+
+    public StatusPanel getStatusPanel() {
+        return statusPanel;
     }
 }
