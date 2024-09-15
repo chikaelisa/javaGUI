@@ -1,5 +1,6 @@
 package components;
 
+import components.menu.MainMenuBar;
 import components.panel.AnimationPanel;
 import components.panel.TextPanel;
 
@@ -17,6 +18,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        setJMenuBar(new MainMenuBar(this));
         textPanel = new TextPanel(this);
         animationPanel = new AnimationPanel();
 
