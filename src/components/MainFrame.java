@@ -1,5 +1,6 @@
 package components;
 
+import components.panel.AnimationPanel;
 import components.panel.TextPanel;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 
 public class MainFrame extends JFrame {
     private final TextPanel textPanel;
+    private final AnimationPanel animationPanel;
 
     public MainFrame() {
         setTitle("Java GUI application");
@@ -16,10 +18,19 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
 
         textPanel = new TextPanel(this);
-        add(textPanel, BorderLayout.CENTER);
+        animationPanel = new AnimationPanel();
+
+        add(textPanel, BorderLayout.WEST);
+        add(animationPanel, BorderLayout.CENTER);
+
+        animationPanel.startAnimation();
     }
 
     public TextPanel getTextPanel() {
         return textPanel;
+    }
+
+    public AnimationPanel getAnimationPanel() {
+        return animationPanel;
     }
 }
