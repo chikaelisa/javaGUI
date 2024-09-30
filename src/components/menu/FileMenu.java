@@ -1,8 +1,9 @@
 package components.menu;
 
 import components.MainFrame;
-
+import java.io.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileMenu extends JMenu {
     public FileMenu(MainFrame mainFrame) {
@@ -24,10 +25,31 @@ public class FileMenu extends JMenu {
     }
 
     private void onOpenFileMenuItemSelected(MainFrame mainFrame) {
-        // TODO: Implement this function!
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Selecione um arquivo .txt");
 
-        // Remember that this function should update TextPanel text:
-        // mainFrame.getTextPanel().setText(newText);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de texto", "txt");
+        fileChooser.setFileFilter(filter);
+            
+        int result = fileChooser.showOpenDialog(mainFrame);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            
+            StringBuilder content = new StringBuilder();
+            
+            try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    content.append(line).append("\n");
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(mainFrame, "Erro ao abrir o arquivo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            mainFrame.getTextPanel().setText(content.toString());
+        }
     }
 
     private void onCloseFileMenuItemSelected(MainFrame mainFrame) {
