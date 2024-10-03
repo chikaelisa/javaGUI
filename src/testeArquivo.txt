@@ -1,3 +1,0 @@
-Ola Mundo!
-POO 2
-Projeto GUI
