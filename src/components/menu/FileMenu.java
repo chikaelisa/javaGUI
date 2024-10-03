@@ -20,7 +20,7 @@ public class FileMenu extends JMenu {
         closeFileMenuItem.addActionListener(e -> onCloseFileMenuItemSelected(mainFrame));
 
         JMenuItem exitMenuItem = new JMenuItem("Sair");
-        exitMenuItem.addActionListener(e -> onExitMenuItemSelected());
+        exitMenuItem.addActionListener(e -> onExitMenuItemSelected(mainFrame));
 
         add(openFileMenuItem);
         add(closeFileMenuItem);
@@ -70,7 +70,8 @@ public class FileMenu extends JMenu {
         mainFrame.getStatusPanel().setStatusLabel("Arquivo fechado!");
     }
 
-    private void onExitMenuItemSelected() {
-        System.exit(0);
+    private void onExitMenuItemSelected(MainFrame mainFrame) {
+        mainFrame.getAnimatedPanel().stopAnimation();
+        System.exit(WindowConstants.EXIT_ON_CLOSE);
     }
 }

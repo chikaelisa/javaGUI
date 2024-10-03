@@ -7,6 +7,8 @@ import components.panel.TextPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MainFrame extends JFrame {
     private final TextPanel textPanel;
@@ -29,7 +31,7 @@ public class MainFrame extends JFrame {
         add(animatedPanel, BorderLayout.CENTER);
         add(statusPanel, BorderLayout.SOUTH);
 
-        animatedPanel.startAnimation();
+        setupWindowsListener();
     }
 
     public TextPanel getTextPanel() {
@@ -42,5 +44,21 @@ public class MainFrame extends JFrame {
 
     public StatusPanel getStatusPanel() {
         return statusPanel;
+    }
+
+    private void setupWindowsListener() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                super.windowOpened(e);
+                getAnimatedPanel().startAnimation();
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                getAnimatedPanel().stopAnimation();
+            }
+        });
     }
 }
