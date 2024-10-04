@@ -22,13 +22,17 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        setJMenuBar(new MainMenuBar(this));
-        textPanel = new TextPanel(this);
+        textPanel = new TextPanel();
         animatedPanel = new AnimatedPanel();
         statusPanel = new StatusPanel();
 
-        add(textPanel, BorderLayout.WEST);
-        add(animatedPanel, BorderLayout.CENTER);
+        JPanel containerPanel = new JPanel();
+        containerPanel.setLayout(new GridLayout(1, 2));
+        containerPanel.add(textPanel);
+        containerPanel.add(animatedPanel);
+
+        setJMenuBar(new MainMenuBar(this));
+        add(containerPanel, BorderLayout.CENTER);
         add(statusPanel, BorderLayout.SOUTH);
 
         setupWindowsListener();

@@ -11,7 +11,7 @@ public class StatusPanel extends JPanel {
         statusLabel.setText("Programa iniciado!");
 
         add(statusLabel);
-        setBackground(Color.gray);
+        setBackground(Color.lightGray);
     }
 
     public void setStatusLabel(String newStatusLabel) {
