@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Objects;
 
 public class HelpMenu extends JMenu {
     public HelpMenu() {
@@ -23,7 +22,7 @@ public class HelpMenu extends JMenu {
     }
 
     private void onHelpMenuItemSelected() {
-        File helpFile = new File("src/components/menu/help.txt");
+        File helpFile = new File("src/assets/help.txt");
         String content = readFile(helpFile);
         if (content != null) {
             showHelpDialog(content);
@@ -31,7 +30,7 @@ public class HelpMenu extends JMenu {
     }
 
     private void onAboutMenuItemSelected() {
-        File aboutFile = new File("src/components/menu/about.txt");
+        File aboutFile = new File("src/assets/about.txt");
         String content = readFile(aboutFile);
         if (content != null) {
             displayContent(content);
@@ -82,7 +81,7 @@ public class HelpMenu extends JMenu {
         JScrollPane textScrollPane = new JScrollPane(textArea);
         textScrollPane.setPreferredSize(new Dimension(380, 240));
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/components/menu/fileMenu.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/assets/fileMenu.png"));
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
