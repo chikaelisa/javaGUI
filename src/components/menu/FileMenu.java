@@ -1,13 +1,12 @@
 package components.menu;
 
 import components.MainFrame;
+import utils.FileUtils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+
 
 public class FileMenu extends JMenu {
     public FileMenu(MainFrame mainFrame) {
@@ -40,26 +39,19 @@ public class FileMenu extends JMenu {
         int result = fileChooser.showOpenDialog(mainFrame);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            StringBuilder content = new StringBuilder();
+            String content = FileUtils.readFile(selectedFile);
 
-            try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    content.append(line).append("\n");
-                }
-            } catch (IOException e) {
+            if (content != null) {
+                mainFrame.getTextPanel().setText(content);
+                mainFrame.getStatusPanel().setStatusLabel("Arquivo aberto!");
+            } else {
                 JOptionPane.showMessageDialog(
                         mainFrame,
-                        "Erro ao abrir o arquivo: " + e.getMessage(),
+                        "Erro ao abrir o arquivo: O conteúdo está vazio ou ocorreu um erro na leitura.",
                         "Erro", JOptionPane.ERROR_MESSAGE
                 );
                 mainFrame.getStatusPanel().setStatusLabel("Erro ao abrir o arquivo!");
-
-                return;
             }
-
-            mainFrame.getTextPanel().setText(content.toString());
-            mainFrame.getStatusPanel().setStatusLabel("Arquivo aberto!");
         } else {
             mainFrame.getStatusPanel().setStatusLabel("Abertura de arquivo cancelada!");
         }
