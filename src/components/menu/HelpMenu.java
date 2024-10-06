@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelpMenu extends JMenu {
     public HelpMenu() {
@@ -25,7 +26,7 @@ public class HelpMenu extends JMenu {
         File helpFile = new File("src/components/menu/help.txt");
         String content = readFile(helpFile);
         if (content != null) {
-            displayContent("Ajuda", content);
+            showHelpDialog(content);
         }
     }
 
@@ -33,7 +34,7 @@ public class HelpMenu extends JMenu {
         File aboutFile = new File("src/components/menu/about.txt");
         String content = readFile(aboutFile);
         if (content != null) {
-            displayContent("Sobre este projeto", content);
+            displayContent(content);
         }
     }
 
@@ -51,7 +52,7 @@ public class HelpMenu extends JMenu {
         }
     }
 
-    private void displayContent(String title, String content) {
+    private void displayContent(String content) {
         JTextArea textArea = new JTextArea(content);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
@@ -60,6 +61,48 @@ public class HelpMenu extends JMenu {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(400, 300));
 
-        JOptionPane.showMessageDialog(null, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, scrollPane, "Sobre este projeto", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    private void showHelpDialog(String content) {
+        JDialog helpDialog = new JDialog();
+        helpDialog.setTitle("Ajuda");
+        helpDialog.setSize(800, 700);
+        helpDialog.setLocationRelativeTo(null);
+        helpDialog.setModal(true);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        JTextArea textArea = new JTextArea(content);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+        JScrollPane textScrollPane = new JScrollPane(textArea);
+        textScrollPane.setPreferredSize(new Dimension(380, 240));
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("/components/menu/fileMenu.png"));
+        JLabel imageLabel = new JLabel(icon);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        mainPanel.add(textScrollPane);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(imageLabel);
+
+        JScrollPane mainScrollPane = new JScrollPane(mainPanel);
+        mainScrollPane.setPreferredSize(new Dimension(380, 300));
+
+        JButton closeButton = new JButton("Fechar");
+        closeButton.addActionListener(e -> helpDialog.dispose());
+
+        JPanel dialogPanel = new JPanel(new BorderLayout());
+        dialogPanel.add(mainScrollPane, BorderLayout.CENTER);
+        dialogPanel.add(closeButton, BorderLayout.SOUTH);
+
+        helpDialog.getContentPane().add(dialogPanel);
+        helpDialog.setVisible(true);
+    }
+
+
 }
