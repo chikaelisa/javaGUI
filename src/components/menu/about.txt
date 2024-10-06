@@ -1,1 +1,20 @@
 ﻿Sobre este projeto
+
+Este projeto foi desenvolvido para a disciplina de Programação Orientada a Objetos II, ministrada pelo professor Andre Angelis, no curso de graduação Tec. em Análise e Desenvolvimento de Sistemas.
+
+Versão: 1.1
+Repositório GitHub:  https://github.com/chikaelisa/javaGUI
+
+
+Desenvolvedores:
+- Augusto Carneiro da Silva - 145369
+- Francisca Elisa Carvalho Rosa - 167666
+- Luiz Henrique Firmino de Jesus - 176204
+- Roberto Kendy Hassobe - 224141
+- Vinícius Duarte Cegalla - 247095
+- Ana Carolina Ramalho Da Silva - 248317
+
+Descrição:
+Este projeto tem como objetivo aplicar os conceitos de programação orientada a objetos aprendidos na disciplina, proporcionando uma experiência prática no desenvolvimento de software.
+
+
