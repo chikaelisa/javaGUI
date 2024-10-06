@@ -1,9 +1,11 @@
 package utils;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.awt.*;
 
 public class FileUtils {
 
@@ -19,5 +21,17 @@ public class FileUtils {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
             return null;
         }
+    }
+
+    public static void displayContent(String content, String title) {
+        JTextArea textArea = new JTextArea(content);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(400, 300));
+
+        JOptionPane.showMessageDialog(null, scrollPane, title, JOptionPane.INFORMATION_MESSAGE);
     }
 }
