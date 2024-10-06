@@ -1,0 +1,25 @@
+﻿Ajuda do Software
+
+Estrutura da Interface:
+
+1. Janela Principal:
+   - A janela principal contém a barra de título, ícone da aplicação, barra de status e menus.
+
+2. Barra de Menus:
+   - A barra de menus é composta por três menus principais: Arquivo, Configuração e Ajuda.
+
+   Menu Arquivo:
+   - Abrir Arquivo: Abre um diálogo para selecionar um arquivo de texto e exibir seu conteúdo na área de texto.
+   - Fechar Arquivo: Fecha o arquivo atualmente aberto e limpa a área de texto da tela.
+   - Sair: Encerra a aplicação.
+
+   Menu Configuração:
+   - Padrões: Permite escolher padrões para o comportamento dinâmico do fundo da aplicação.
+   - Cores: Altera as cores do fundo dinâmico, permitindo personalização da interface.
+   - Velocidade: Ajusta a velocidade das animações do fundo, proporcionando uma experiência mais dinâmica.
+
+   Menu Ajuda:
+   - Ajuda: Abre um diálogo personalizado com explicações detalhadas sobre a aplicação e suas funcionalidades.
+   - Sobre: Mostra informações sobre a aplicação, como versão, autores e outros detalhes relevantes.
+
+Para mais informações, consulte os desenvolvedores.
