@@ -9,7 +9,13 @@ public class HelpDialog {
     public HelpDialog(String title, String content, ImageIcon icon) {
         dialog = new JDialog();
         dialog.setTitle(title);
-        dialog.setSize(800, 700);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int width = (int) (screenSize.width * 0.4);
+        int height = (int) (screenSize.height * 0.3);
+        dialog.setSize(width, height);
+
         dialog.setLocationRelativeTo(null);
         dialog.setModal(true);
 
@@ -21,7 +27,7 @@ public class HelpDialog {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         JScrollPane textScrollPane = new JScrollPane(textArea);
-        textScrollPane.setPreferredSize(new Dimension(380, 240));
+        textScrollPane.setPreferredSize(new Dimension(width - 40, 240));
 
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -31,7 +37,7 @@ public class HelpDialog {
         mainPanel.add(imageLabel);
 
         JScrollPane mainScrollPane = new JScrollPane(mainPanel);
-        mainScrollPane.setPreferredSize(new Dimension(380, 300));
+        mainScrollPane.setPreferredSize(new Dimension(width - 40, 300));
 
         JButton closeButton = new JButton("Fechar");
         closeButton.addActionListener(e -> dialog.dispose());
